@@ -78,3 +78,13 @@ GlobeTrove solves these by offering a centralized, user-friendly, and trustworth
 Figma link: https://www.figma.com/design/J8QhVYW5wu50TCJSuWNJBU/GlobeTROVE?node-id=0-1&t=exKy3OFqTz2SvxE3-1
 
 
+## Quick Start – Local Development
+
+### Prerequisites
+- Git
+- Docker Desktop
+- VS Code
+
+### Run Locally Using Docker
+```bash
+docker-compose up --build
