@@ -71,3 +71,10 @@ GlobeTrove solves these by offering a centralized, user-friendly, and trustworth
 - Student-level development resources
 - Compliance with data security standards
 
+> Feature branch: authentication setup
+
+
+## Figma Wireframes
+Figma link: https://www.figma.com/design/J8QhVYW5wu50TCJSuWNJBU/GlobeTROVE?node-id=0-1&t=exKy3OFqTz2SvxE3-1
+
+
