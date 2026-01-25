@@ -1,6 +1,6 @@
-#  GlobeTrove – Travel Booking & Destination Discovery Platform
+# 🌍 GlobeTrove – Travel Booking & Destination Discovery Platform
 
-##  Project Overview
+## 📌 Project Overview
 GlobeTrove is a web-based travel booking and destination discovery platform designed to simplify how users explore, plan, and book travel experiences. It provides curated destinations, transparent pricing, secure booking, and immersive previews such as virtual tours, all within a single unified interface.
 
 ---
@@ -50,7 +50,7 @@ GlobeTrove solves these by offering a centralized, user-friendly, and trustworth
 
 ---
 
-##  Success Metrics
+## 📈 Success Metrics
 - 80% of users complete booking without assistance
 - Successful payment transactions with zero critical failures
 - Average page load time under 3 seconds
