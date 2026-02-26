@@ -101,14 +101,14 @@ docker-compose up --build
 #### Architecture Diagram
 
 ![Architecture Diagram1](Design/Draw.io/GlobeTrove.drawio.png)
-![Architecture Diagram2](Design/Draw.io/class diagram.png)
-![Architecture Diagram3](Design/Draw.io/usecase (1).png)
+![Architecture Diagram2](Design/Draw.io/class_diagram.png)
+![Architecture Diagram3](Design/Draw.io/usecase(1).png)
 ![Architecture Diagram4](Design/Draw.io/Diagram1.png)
 
 #### UI/UX Designs
 
-![Figma WireFrames1](Design/Figma/F1 (1).png)
-![Figma WireFrames2](Design/Figma/F1 (2).png)
+![Figma WireFrames1](Design/Figma/F1(1).png)
+![Figma WireFrames2](Design/Figma/F1(2).png)
 ![Figma WireFrames3](Design/Figma/Frame1.png)
 ![Figma WireFrames4](Design/Figma/Frame2.1_2.2.png)
 
