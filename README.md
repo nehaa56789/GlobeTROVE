@@ -1,5 +1,5 @@
 #  GlobeTrove – Travel Booking & Destination Discovery Platform
-
+## Deployed site :  https://globetrove.vercel.app/
 ##  Project Overview
 GlobeTrove is a web-based travel booking and destination discovery platform designed to simplify how users explore, plan, and book travel experiences. It provides curated destinations, transparent pricing, secure booking, and immersive previews such as virtual tours, all within a single unified interface.
 
