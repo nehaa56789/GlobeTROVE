@@ -86,5 +86,6 @@ Figma link: https://www.figma.com/design/J8QhVYW5wu50TCJSuWNJBU/GlobeTROVE?node-
 - VS Code
 
 ### Run Locally Using Docker
+The application is containerized using a multi-stage Docker build and served via NGINX inside a production container.
 ```bash
 docker-compose up --build
