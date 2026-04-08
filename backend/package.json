@@ -1,0 +1,52 @@
+{
+  "name": "globetrove-backend",
+  "version": "2.0.0",
+  "description": "GlobeTrove travel booking backend — MongoDB + Razorpay + Admin",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node seeder.js",
+    "seed:destroy": "node seeder.js --destroy",
+    "test": "jest",
+    "test:integration": "jest tests/integration --runInBand --forceExit",
+    "test:coverage": "jest --coverage",
+    "test:report": "jest --reporters=default --reporters=jest-html-reporter",
+    "mutation": "stryker run"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-html-reporter",
+        {
+          "pageTitle": "Globetrove Test Report",
+          "outputPath": "coverage/test-report.html"
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.2",
+    "razorpay": "^2.9.2"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^9.6.0",
+    "@stryker-mutator/jest-runner": "^9.6.0",
+    "jest": "^30.3.0",
+    "jest-html-reporter": "^4.4.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.2.2"
+  }
+}

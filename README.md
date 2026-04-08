@@ -114,3 +114,203 @@ docker-compose up --build
 
 
 GlobeTROVE was designed using a client–server architecture with a layered frontend structure to ensure clear separation of concerns. The system emphasizes modularity by organizing features into independent modules such as authentication, booking, and destination management. Abstraction was applied through a dedicated service layer for API communication, keeping UI components independent from backend logic. High cohesion and low coupling were maintained by ensuring each module has a single responsibility and minimal dependencies. These design choices improve scalability, maintainability, and ease of future enhancements.
+
+
+
+
+
+
+# **Lastest Update** #
+
+
+
+
+
+# ✈ GlobeTrove — Full-Stack Travel Booking App
+
+A fully modularized travel booking platform with a React frontend and Node.js/Express backend.
+
+---
+
+## 📁 Project Structure
+
+```
+globetrove/
+├── backend/
+│   ├── controllers/
+│   │   ├── authController.js         # Register, login, getMe
+│   │   ├── bookingsController.js     # Get/cancel user bookings
+│   │   ├── destinationsController.js # List, filter, get by ID
+│   │   ├── flightsController.js      # List, filter, book
+│   │   ├── hotelsController.js       # List, filter, book
+│   │   └── wishlistController.js     # Get, toggle wishlist item
+│   ├── data/
+│   │   └── mockData.js               # In-memory data store
+│   ├── middleware/
+│   │   └── auth.js                   # JWT verification middleware
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── bookings.js
+│   │   ├── destinations.js
+│   │   ├── flights.js
+│   │   ├── hotels.js
+│   │   └── wishlist.js
+│   ├── .env                          # Environment variables
+│   ├── package.json
+│   └── server.js                     # Express app entry point
+│
+└── frontend/
+    ├── public/
+    │   └── index.html
+    ├── src/
+    │   ├── components/
+    │   │   ├── DestCard.jsx           # Destination card with wishlist
+    │   │   ├── Footer.jsx
+    │   │   ├── GlobalStyles.jsx       # Global CSS + Google Fonts
+    │   │   ├── Navbar.jsx
+    │   │   ├── Skeleton.jsx           # Loading skeleton
+    │   │   └── ToastContainer.jsx     # Toast notification system
+    │   ├── hooks/
+    │   │   ├── useAuth.js             # Login, register, logout + localStorage
+    │   │   ├── useToast.js            # Toast state management
+    │   │   └── useWishlist.js         # Optimistic wishlist with server sync
+    │   ├── pages/
+    │   │   ├── AuthPage.jsx           # Login / Sign-up form
+    │   │   ├── DashboardPage.jsx      # User bookings + profile stats
+    │   │   ├── FlightsPage.jsx        # Flight search + booking
+    │   │   ├── HomePage.jsx           # Hero, destinations, carousel, stats
+    │   │   ├── HotelsPage.jsx         # Hotel search + booking
+    │   │   ├── MapPage.jsx            # Interactive world map
+    │   │   └── WishlistPage.jsx       # Saved destinations
+    │   ├── utils/
+    │   │   └── api.js                 # Axios instance + all API calls
+    │   ├── App.jsx                    # Root component — wires everything
+    │   └── index.js                   # React entry point
+    └── package.json
+```
+
+---
+
+## 🚀 How to Run
+
+### Prerequisites
+- **Node.js** v18+ (check: `node -v`)
+- **npm** v9+ (check: `npm -v`)
+
+---
+
+### Step 1 — Start the Backend
+
+```bash
+cd globetrove/backend
+npm install
+npm run dev       # uses nodemon for auto-reload
+# OR
+npm start         # plain node, no auto-reload
+```
+
+The API will start at **http://localhost:5000**
+
+Test it:
+```bash
+curl http://localhost:5000/api/health
+```
+Expected: `{"success":true,"message":"GlobeTrove API is running 🌍",...}`
+
+---
+
+### Step 2 — Start the Frontend (in a new terminal)
+
+```bash
+cd globetrove/frontend
+npm install
+npm start
+```
+
+React will open **http://localhost:3000** in your browser automatically.
+
+The `"proxy": "http://localhost:5000"` in `frontend/package.json` routes all `/api/*`
+calls to your backend — no CORS issues.
+
+---
+
+## 🔌 API Endpoints Reference
+
+### Auth
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/auth/register` | ❌ | Create account |
+| POST | `/api/auth/login` | ❌ | Login, returns JWT |
+| GET | `/api/auth/me` | ✅ | Get logged-in user |
+
+### Destinations
+| Method | Endpoint | Query Params | Description |
+|--------|----------|-------------|-------------|
+| GET | `/api/destinations` | `tag`, `maxPrice`, `sort` | List all |
+| GET | `/api/destinations/popular` | — | Popular places |
+| GET | `/api/destinations/:id` | — | Get one by ID |
+
+### Flights
+| Method | Endpoint | Query Params | Description |
+|--------|----------|-------------|-------------|
+| GET | `/api/flights` | `from`, `to`, `class`, `stops`, `sort` | Search flights |
+| GET | `/api/flights/:id` | — | Get one by ID |
+| POST | `/api/flights/book` | — (body: `flightId`) | Book a flight ✅ |
+
+### Hotels
+| Method | Endpoint | Query Params | Description |
+|--------|----------|-------------|-------------|
+| GET | `/api/hotels` | `city`, `stars`, `sort` | Search hotels |
+| GET | `/api/hotels/:id` | — | Get one by ID |
+| POST | `/api/hotels/book` | — (body: `hotelId`, `checkIn`, `checkOut`) | Book a hotel ✅ |
+
+### Bookings
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/bookings` | Get my bookings ✅ |
+| DELETE | `/api/bookings/:id` | Cancel a booking ✅ |
+
+### Wishlist
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/wishlist` | Get my wishlist ✅ |
+| POST | `/api/wishlist/:destId` | Toggle destination in wishlist ✅ |
+
+✅ = Requires `Authorization: Bearer <token>` header
+
+---
+
+## ⚙️ Environment Variables
+
+Edit `backend/.env`:
+
+```env
+PORT=5000
+JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+NODE_ENV=development
+```
+
+**Important:** Change `JWT_SECRET` to a long random string before deploying.
+
+---
+
+## 🔄 How Frontend ↔ Backend Are Wired
+
+1. **`frontend/src/utils/api.js`** — Axios instance with base URL `/api` and auto JWT injection
+2. **`frontend/package.json`** — `"proxy": "http://localhost:5000"` forwards API calls to Express
+3. **`useAuth.js`** — Stores JWT in `localStorage` as `gt_token`, user as `gt_user`
+4. **`useWishlist.js`** — Optimistic local updates + server sync when logged in
+5. Every page calls the API on mount (`useEffect`) and handles loading/error states
+
+---
+
+## 🛠️ Upgrading to a Real Database
+
+The backend uses in-memory arrays (`mockData.js`). To connect a real database:
+
+1. Install: `npm install mongoose` (MongoDB) or `npm install pg` (PostgreSQL)
+2. Replace the arrays in `mockData.js` with DB models
+3. Update controllers to use `async/await` with DB queries
+4. Add a `DB_URI` to `.env`
+
+Data currently resets when the server restarts — by design for this demo.
